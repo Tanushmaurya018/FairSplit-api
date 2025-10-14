@@ -1,6 +1,6 @@
 import express from "express";
-import { getGroupBalances } from "../controllers/balanceController.ts";
-import { verifyUserToken } from "../middlewares/verifyToken.ts";
+import { getGroupBalances } from "../controllers/balanceController";
+import { verifyUserToken } from "../middlewares/verifyToken";
 
 const router = express.Router();
 

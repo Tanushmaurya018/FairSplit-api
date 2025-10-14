@@ -1,6 +1,6 @@
 import express from "express";
-import { getSettlementSuggestions } from "../controllers/settlementController.ts";
-import { verifyUserToken } from "../middlewares/verifyToken.ts";
+import { getSettlementSuggestions } from "../controllers/settlementController";
+import { verifyUserToken } from "../middlewares/verifyToken";
 
 const router = express.Router();
 

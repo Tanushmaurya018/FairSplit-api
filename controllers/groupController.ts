@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import Group from "../models/group.ts";
-import ApiError from "../utils/ApiError.ts";
+import Group from "../models/group";
+import ApiError from "../utils/ApiError";
 
 export const getGroups = async (req: Request, res: Response) => {
   try {

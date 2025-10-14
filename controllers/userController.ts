@@ -1,7 +1,9 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import User from "../models/user.ts";
-import ApiError from "../utils/ApiError.ts";
+import User from "../models/user";
+import ApiError from "../utils/ApiError";
+
+const SALT_ROUNDS = Number(process.env.SALT) || 10;
 
 export const updateProfile = async (req: Request, res: Response) => {
   try {
@@ -14,7 +16,7 @@ export const updateProfile = async (req: Request, res: Response) => {
     let hashedPassword;
     if (password) {
       if (password.length < 6) throw ApiError.badRequest("Password must be at least 6 characters");
-      hashedPassword = await bcrypt.hash(password);
+      hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     }
 
     if (email) {

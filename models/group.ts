@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, Model, model } from "mongoose";
-import type { IGroup } from "../interfaces/group.d.ts";
+import type { IGroup } from "../interfaces/group.d";
 
 export interface IGroupDocument extends IGroup, Document {}
 

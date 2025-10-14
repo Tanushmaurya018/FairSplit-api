@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import Balance from "../models/balance.ts";
-import ApiError from "../utils/ApiError.ts";
+import Balance from "../models/balance";
+import ApiError from "../utils/ApiError";
 
 export const getGroupBalances = async (req: Request, res: Response) => {
   try {

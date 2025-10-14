@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import Expense from "../models/expense.ts";
-import Balance from "../models/balance.ts";
-import ApiError from "../utils/ApiError.ts";
+import Expense from "../models/expense";
+import Balance from "../models/balance";
+import ApiError from "../utils/ApiError";
 
 async function bumpBalance(groupId: string, userId: string, delta: number) {
   await Balance.findOneAndUpdate(
