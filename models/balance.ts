@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, Model, model } from "mongoose";
-import type { IBalance } from "../interfaces/balance.d";
+import type { IBalance } from "../interfaces/balance.d.js";
 
 export interface IBalanceDocument extends IBalance, Document {}
 

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import User from "../models/user";
-import ApiError from "../utils/ApiError";
+import User from "../models/user.js";
+import ApiError from "../utils/ApiError.js";
 
 const SALT_ROUNDS = Number(process.env.SALT) || 10;
 

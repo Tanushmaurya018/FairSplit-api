@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import type { Request, Response } from "express";
-import User from "../models/user";
+import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import ApiError from "../utils/ApiError";
+import ApiError from "../utils/ApiError.js";
 
 const SALT_ROUNDS = Number(process.env.SALT) || 10;
 

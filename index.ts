@@ -5,15 +5,15 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-import Database from "./db"; // use the singleton
+import Database from "./db.js"; // use the singleton
 
-import userRouter from "./routes/userRouter";
-import authRouter from "./routes/authRouter";
-import groupRouter from "./routes/groupRouter";
-import expenseRouter from "./routes/expenseRouter";
-import balanceRouter from "./routes/balanceRouter";
-import settlementRouter from "./routes/settlementRouter";
 
+import userRouter from "./routes/userRouter.js";
+import authRouter from "./routes/authRouter.js";
+import groupRouter from "./routes/groupRouter.js";
+import expenseRouter from "./routes/expenseRouter.js";
+import balanceRouter from "./routes/balanceRouter.js";
+import settlementRouter from "./routes/settlementRouter.js";
 const app = express();
 // Initialize DB connection via singleton
 Database.getInstance();

@@ -1,6 +1,6 @@
 import express from "express";
-import { addExpense, getExpenses, deleteExpense } from "../controllers/expenseController";
-import { verifyUserToken } from "../middlewares/verifyToken";
+import { addExpense, getExpenses, deleteExpense } from "../controllers/expenseController.js";
+import { verifyUserToken } from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 
