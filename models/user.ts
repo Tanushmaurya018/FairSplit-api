@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, Model, model } from "mongoose";
-import type { IUser } from "../interfaces/user.d.js";
+import type { IUser } from "../interfaces/user.d.ts";
 
 export interface IUserDocument extends IUser, Document {}
 

@@ -1,7 +1,7 @@
 import type { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import ApiError from "../utils/ApiError.js";
-import type { AuthRequest } from "../interfaces/auth.d.js";
+import ApiError from "../utils/ApiError";
+import type { AuthRequest } from "../interfaces/auth.d";
 
 export const verifyUserToken = (req: AuthRequest, res: Response, next: NextFunction) => {
   try {

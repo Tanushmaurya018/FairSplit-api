@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema, Model, model } from "mongoose";
-import type { IExpense } from "../interfaces/expense.d.js";
+import type { IExpense } from "../interfaces/expense.d.ts";
 
 export interface IExpenseDocument extends IExpense, Document {}
 

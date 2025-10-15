@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import type { Request, Response } from "express";
-import User from "../models/user.js";
+import User from "../models/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import ApiError from "../utils/ApiError.js";
+import ApiError from "../utils/ApiError";
 
 const SALT_ROUNDS = Number(process.env.SALT) || 10;
 
@@ -53,7 +53,7 @@ export const login = async (req: Request, res: Response) => {
     email = email.trim().toLowerCase();
 
     const user = await User.findOne({ email });
-    if (!user) throw ApiError.unauthorized("Invalid credentials");
+    if (!user) throw ApiError.unauthorized("User with this email id does not exist");
 
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) throw ApiError.unauthorized("Invalid credentials");

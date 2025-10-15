@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import Group from "../models/group.js";
-import ApiError from "../utils/ApiError.js";
+import Group from "../models/group";
+import ApiError from "../utils/ApiError";
 
 export const getGroups = async (req: Request, res: Response) => {
   try {
@@ -24,13 +24,16 @@ export const getGroups = async (req: Request, res: Response) => {
 export const createGroup = async (req: Request, res: Response) => {
   try {
     const { name, members } = req.body;
-    const createdBy = req.user?._id
+    const createdBy = req.user?._id;
+
     if (!name || !createdBy) throw ApiError.badRequest("Name and createdBy are required");
-    console.log(members)
+
+    const allMembers = Array.from(new Set([createdBy.toString(), ...(members || [])]));
+
     const group = await Group.create({
       name,
       createdBy,
-      members: (members || []).map((id: string) => id),
+      members: allMembers,
     });
 
     const populatedGroup = await group.populate({ path: "members", select: "username email" });
@@ -45,19 +48,27 @@ export const addMember = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const { userId } = req.body;
+
     if (!id || !userId) throw ApiError.badRequest("Group ID and User ID are required");
 
-    const group = await Group.findByIdAndUpdate(
-      id,
-      { $addToSet: { members: userId } },
-      { new: true }
-    ).populate("members", "username email");
-
+    const group = await Group.findById(id);
     if (!group) throw ApiError.notFound("Group not found");
 
-    res.status(200).json({ success: true, data: group });
+    const alreadyMember = group.members.some(
+      (memberId) => memberId.toString() === userId
+    );
+    if (alreadyMember) throw ApiError.badRequest("User is already a member of this group");
+
+    group.members.push(userId);
+    await group.save();
+
+    const updatedGroup = await group.populate("members", "username email");
+
+    res.status(200).json({ success: true, data: updatedGroup });
   } catch (err: any) {
-    res.status(err?.statusCode || 500).json({ success: false, message: err?.message || "Failed to add member" });
+    res
+      .status(err?.statusCode || 500)
+      .json({ success: false, message: err?.message || "Failed to add member" });
   }
 };
 
