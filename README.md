@@ -8,6 +8,8 @@ The backend of the Expense Splitter Service is built using Express.js with TypeS
 
 The server follows an MVC (Model-View-Controller) structure with modular controllers, routes, and models. It connects to MongoDB using Mongoose and exposes RESTful APIs to the frontend.
 
+<img width="1771" height="1058" alt="diagram-export-16-10-2025-12_35_54-AM" src="https://github.com/user-attachments/assets/e7664efd-9c19-4af5-bc75-97c43061c72e" />
+
 ## Folder Structure
 
 The main directories are organized as follows:
